@@ -2,15 +2,14 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  // base: mode === 'production' ? '/test-project/dist/' : '/',
-  // root: '',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/test-jt-app/' : '/',
   plugins: [react()],
+  // development
   server: {
-    // open browser on server start
     open: true,
   },
-
+  // production
   build: {
     // esbuild target
     target: 'es2020',
@@ -26,10 +25,10 @@ export default defineConfig({
     },
   },
 
-  // required for in-browser template compilation
+  // in-browser template compilation
   resolve: {
     alias: {
       '@': '/src/',
     },
   },
-});
+}));
